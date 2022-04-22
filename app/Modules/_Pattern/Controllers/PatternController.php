@@ -2,8 +2,8 @@
 
 namespace App\Modules\Pattern\Controllers;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Controller;
 
-class PatternController extends BaseController
+class PatternController extends Controller
 {
 }
