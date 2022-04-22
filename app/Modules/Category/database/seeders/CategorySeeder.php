@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Shop\Category;
+use App\Modules\Category\Models\Category;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
