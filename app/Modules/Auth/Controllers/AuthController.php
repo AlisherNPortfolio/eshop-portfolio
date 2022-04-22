@@ -4,6 +4,8 @@ namespace App\Modules\Auth\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Auth\Repository\AuthRepository;
+use App\Modules\Auth\Requests\LoginRequest;
+use App\Modules\Auth\Requests\RegisterRequest;
 use App\Utils\ErrorMessages;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
@@ -18,8 +20,10 @@ class AuthController extends Controller
         $this->repository = $repository;
     }
 
-    public function register(array $data): JsonResponse
+    public function register(RegisterRequest $request): JsonResponse
     {
+        $data = $request->validated();
+
         $input = [
             ...$data,
             'password' => bcrypt($data['password'])
@@ -38,9 +42,9 @@ class AuthController extends Controller
         }
     }
 
-    public function login(array $data): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
-        $result = $this->repository->login($data);
+        $result = $this->repository->login($request->validated());
 
         if (!$result) {
             return error_response(
@@ -52,8 +56,10 @@ class AuthController extends Controller
         return success_response($result);
     }
 
-    public function checkAuthData(array $data)
+    public function checkAuthData(LoginRequest $request)
     {
+        $data = $request->validated();
+
         $user = $this->getUser($data['email']);
 
         if (!$user) {
