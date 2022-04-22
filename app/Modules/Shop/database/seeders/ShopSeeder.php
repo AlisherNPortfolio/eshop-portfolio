@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace App\Modules\Shop\database\seeders;
 
 use App\Modules\Shop\Models\Shop;
 use Illuminate\Database\Seeder;
