@@ -26,11 +26,11 @@ class AuthController extends Controller
         ];
 
         try {
-            return $this->successResponse(
+            return success_response(
                 $this->repository->register($input)
             );
         } catch (PDOException $e) {
-            return $this->errorResponse(
+            return error_response(
                 ErrorMessages::CAN_NOT_REGISTER_MSG,
                 ErrorMessages::CAN_NOT_REGISTER,
                 $e->getMessage()
@@ -43,13 +43,13 @@ class AuthController extends Controller
         $result = $this->repository->login($data);
 
         if (!$result) {
-            return $this->errorResponse(
+            return error_response(
                 ErrorMessages::CAN_NOT_LOGIN_MSG,
                 ErrorMessages::CAN_NOT_LOGIN
             );
         }
 
-        return $this->successResponse($result);
+        return success_response($result);
     }
 
     public function checkAuthData(array $data)
@@ -57,20 +57,20 @@ class AuthController extends Controller
         $user = $this->getUser($data['email']);
 
         if (!$user) {
-            return $this->errorResponse(
+            return error_response(
                 ErrorMessages::NOT_FOUND_USER_MSG,
                 ErrorMessages::NOT_FOUND_USER
             );
         }
 
         if (!Hash::check($data['password'], $user->password)) {
-            return $this->errorResponse(
+            return error_response(
                 ErrorMessages::WRONG_PASSWORD_MSG,
                 ErrorMessages::WRONG_PASSWORD
             );
         }
 
-        return $this->successResponse(true);
+        return success_response(true);
     }
 
     private function getUser($email)
