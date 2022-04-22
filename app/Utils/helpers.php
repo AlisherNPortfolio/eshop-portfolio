@@ -7,6 +7,32 @@ if (!function_exists('is_prod')) {
     }
 }
 
+if (!function_exists('success_response')) {
+    function success_response($data, $code = 200)
+    {
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ], $code);
+    }
+}
+
+if (!function_exists('error_response')) {
+    function error_response($message = '', $code = 0, $details = null)
+    {
+        $response = [
+            'success' => false,
+            'code' => $code,
+            'message' => $message
+        ];
+
+        if (!is_prod()) {
+            $response['details'] = $details;
+        }
+        return response()->json($response);
+    }
+}
+
 if (!function_exists('set_globals')) {
     function set_globals($key, $value)
     {
