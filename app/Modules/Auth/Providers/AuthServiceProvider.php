@@ -22,15 +22,13 @@ class AuthServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->registerMigrations();
         }
-
-        // $this->app->bind(AnyInterface::class, AnyPatternRepository::class);
     }
 
     protected function registerConfig()
     {
         $this->mergeConfigFrom(
             __DIR__ . '/../config/config.php',
-            'pattern'
+            'auth'
         );
     }
 
