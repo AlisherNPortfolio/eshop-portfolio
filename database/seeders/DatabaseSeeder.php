@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(BrandsSeeder::class);
         $this->call(ShopSeeder::class);
-        $this->call(OptionSeeder::class);
-        $this->call(OptionItemSeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(ProductImageSeeder::class);
+        $this->call(OptionSeeder::class);
+        $this->call(OptionItemSeeder::class);
         $this->call(ProductOptionItemSeeder::class);
 
         Artisan::call('passport:install');

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+
 return [
 
     /*
@@ -165,15 +167,20 @@ return [
         /*
          * Package Service Providers...
          */
-        App\Modules\Auth\Providers\AuthServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
+        \App\Providers\AppServiceProvider::class,
+        \App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        \App\Providers\EventServiceProvider::class,
+        \App\Providers\RouteServiceProvider::class,
+        \App\Modules\Auth\Providers\AuthServiceProvider::class,
+        \App\Modules\Category\Providers\CategoryServiceProvider::class,
+        \App\Modules\Brand\Providers\BrandServiceProvider::class,
+        \App\Modules\Shop\Providers\ShopServiceProvider::class,
+        \App\Modules\Product\Providers\ProductServiceProvider::class,
 
     ],
 
