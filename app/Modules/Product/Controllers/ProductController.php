@@ -2,11 +2,14 @@
 
 namespace App\Modules\Product\Controllers;
 
+use App\Exceptions\NotFoundResourceException;
 use App\Http\Controllers\Controller;
 use App\Modules\Product\Contracts\Repository\IProductDetailsRepository;
 use App\Modules\Product\Contracts\Repository\IProductListRepository;
+use App\Modules\Product\Resources\ProductDetailsResource;
 use App\Modules\Product\Resources\ProductListResource;
 use App\Utils\ErrorMessages;
+use Exception;
 use Illuminate\Http\Request;
 use PDOException;
 
@@ -32,11 +35,7 @@ class ProductController extends Controller
                 ProductListResource::collection($data)
             );
         } catch (PDOException $e) {
-            return error_response(
-                ErrorMessages::CAN_NOT_GET_RESOURCE_MSG,
-                ErrorMessages::CAN_NOT_GET_RESOURCE,
-                $e->getMessage()
-            );
+            return $this->errorResponseData();
         }
     }
 
@@ -48,11 +47,7 @@ class ProductController extends Controller
                 ProductListResource::collection($data)
             );
         } catch (PDOException $e) {
-            return error_response(
-                ErrorMessages::CAN_NOT_GET_RESOURCE_MSG,
-                ErrorMessages::CAN_NOT_GET_RESOURCE,
-                $e->getMessage()
-            );
+            return $this->errorResponseData();
         }
     }
 
@@ -64,11 +59,7 @@ class ProductController extends Controller
                 ProductListResource::collection($data)
             );
         } catch (PDOException $e) {
-            return error_response(
-                ErrorMessages::CAN_NOT_GET_RESOURCE_MSG,
-                ErrorMessages::CAN_NOT_GET_RESOURCE,
-                $e->getMessage()
-            );
+            return $this->errorResponseData();
         }
     }
 
@@ -76,16 +67,25 @@ class ProductController extends Controller
     {
         try {
             $data = $this->detailsRepository->getProduct($shop_name, $slug);
-
+            if (!$data) {
+                return $this->errorResponseData();
+            }
             return success_response(
-                ProductListResource::collection($data)
+                new ProductDetailsResource($data)
             );
         } catch (PDOException $e) {
-            return error_response(
-                ErrorMessages::CAN_NOT_GET_RESOURCE_MSG,
-                ErrorMessages::CAN_NOT_GET_RESOURCE,
-                $e->getMessage()
-            );
+            return $this->errorResponseData();
         }
+    }
+
+    private function errorResponseData(Exception $e = null)
+    {
+        $details = $e?->getMessage();
+
+        return error_response(
+            ErrorMessages::CAN_NOT_GET_RESOURCE_MSG,
+            ErrorMessages::CAN_NOT_GET_RESOURCE,
+            $details
+        );
     }
 }

@@ -14,12 +14,12 @@ class ProductDetailsRepository extends ReadableRepository implements IProductDet
         parent::__construct($model);
     }
 
-    public function getProduct(string $shopName, string $slug): Model
+    public function getProduct(string $shopName, string $slug): Model|null
     {
         return $this->model
             ->with(['images'])
             ->shop($shopName)
             ->product($slug)
-            ->firstOrFail();
+            ->first();
     }
 }

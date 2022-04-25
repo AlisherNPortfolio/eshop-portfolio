@@ -2,7 +2,7 @@
 
 namespace App\Modules\Product\DbViews;
 
-use App\Models\Shop\ProductImage;
+use App\Modules\Product\Models\ProductImage;
 
 class ProductDetails extends ProductList
 {
