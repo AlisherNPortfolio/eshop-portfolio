@@ -24,15 +24,15 @@ class ProductController extends Controller
         $this->detailsRepository = $detailsRepository;
     }
 
-    public function getHomeProducts(Request $request, string $shop_name, int $limit = 6)
+    public function getHomeItems(Request $request, string $shop_name, int $limit = 6)
     {
         try {
             $data = $this->repository->getLimitedProducts($shop_name, $limit);
-            return $this->successResponse(
+            return success_response(
                 ProductListResource::collection($data)
             );
         } catch (PDOException $e) {
-            return $this->errorResponse(
+            return error_response(
                 ErrorMessages::CAN_NOT_GET_RESOURCE_MSG,
                 ErrorMessages::CAN_NOT_GET_RESOURCE,
                 $e->getMessage()
@@ -44,11 +44,11 @@ class ProductController extends Controller
     {
         try {
             $data = $this->repository->getRecommendedProducts($shop_name, $limit);
-            return $this->successResponse(
+            return success_response(
                 ProductListResource::collection($data)
             );
         } catch (PDOException $e) {
-            return $this->errorResponse(
+            return error_response(
                 ErrorMessages::CAN_NOT_GET_RESOURCE_MSG,
                 ErrorMessages::CAN_NOT_GET_RESOURCE,
                 $e->getMessage()
@@ -60,11 +60,11 @@ class ProductController extends Controller
     {
         try {
             $data = $this->repository->getByCategory($shop_name, $categoryId, $limit);
-            return $this->successResponse(
+            return success_response(
                 ProductListResource::collection($data)
             );
         } catch (PDOException $e) {
-            return $this->errorResponse(
+            return error_response(
                 ErrorMessages::CAN_NOT_GET_RESOURCE_MSG,
                 ErrorMessages::CAN_NOT_GET_RESOURCE,
                 $e->getMessage()
@@ -72,16 +72,16 @@ class ProductController extends Controller
         }
     }
 
-    public function getProduct(Request $request, $shop_name, $slug)
+    public function getItem(Request $request, $shop_name, $slug)
     {
         try {
             $data = $this->detailsRepository->getProduct($shop_name, $slug);
 
-            return $this->successResponse(
+            return success_response(
                 ProductListResource::collection($data)
             );
         } catch (PDOException $e) {
-            return $this->errorResponse(
+            return error_response(
                 ErrorMessages::CAN_NOT_GET_RESOURCE_MSG,
                 ErrorMessages::CAN_NOT_GET_RESOURCE,
                 $e->getMessage()

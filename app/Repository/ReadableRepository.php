@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Base;
+namespace App\Repository;
 
-use App\Repositories\Contracts\IReadableRepository;
+use App\Repository\Contracts\IReadableRepository;
 use App\Traits\Repository\Readable;
 
 class ReadableRepository extends BaseRepository implements IReadableRepository

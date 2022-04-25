@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Base;
+namespace App\Repository;
 
-use App\Repositories\Contracts\IEditableRepository;
+use App\Repository\Contracts\IEditableRepository;
 use App\Traits\Repository\Editable;
 
 class EditableRepository extends BaseRepository implements IEditableRepository

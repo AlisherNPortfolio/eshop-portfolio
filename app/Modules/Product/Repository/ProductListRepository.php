@@ -4,7 +4,7 @@ namespace App\Modules\Product\Repository;
 
 use App\Modules\Product\Contracts\Repository\IProductListRepository;
 use App\Modules\Product\DbViews\ProductList;
-use App\Repositories\Base\ReadableRepository;
+use App\Repository\ReadableRepository;
 use Illuminate\Support\Collection;
 
 class ProductListRepository extends ReadableRepository implements IProductListRepository

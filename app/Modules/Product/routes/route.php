@@ -1,6 +1,5 @@
 <?php
 
-use App\Modules\Product\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('site')->group(function () {
@@ -9,11 +8,9 @@ Route::prefix('site')->group(function () {
     // products
     Route::prefix('products/{shop_name}')->group(function () {
         Route::controller(ProductController::class)->group(function () {
-            Route::get('/', 'homeItems');
-            Route::get('/category/{catId}', 'byCategory');
-            Route::get('/recommended', 'getRecommended');
-        });
-        Route::controller(ProductController::class)->group(function () {
+            Route::get('/', 'getHomeItems');
+            Route::get('/category/{catId}', 'getCategoryItems');
+            Route::get('/recommended', 'getRecommendedItems');
             Route::get('/{slug}', 'getItem');
         });
     });

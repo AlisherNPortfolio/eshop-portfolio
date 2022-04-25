@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Contracts;
+namespace App\Repository\Contracts;
 
 interface ICrudRepository extends IEditableRepository, IReadableRepository
 {

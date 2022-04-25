@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Base;
+namespace App\Repository;
 
-use App\Repositories\Contracts\ICrudRepository;
+use App\Repository\Contracts\ICrudRepository;
 use App\Traits\Repository\Editable;
 use App\Traits\Repository\Readable;
 

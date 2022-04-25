@@ -4,7 +4,7 @@ namespace App\Modules\Product\Repository;
 
 use App\Modules\Product\Contracts\Repository\IProductDetailsRepository;
 use App\Modules\Product\DbViews\ProductDetails;
-use App\Repositories\Base\ReadableRepository;
+use App\Repository\ReadableRepository;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductDetailsRepository extends ReadableRepository implements IProductDetailsRepository

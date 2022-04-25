@@ -13,7 +13,7 @@ use Illuminate\Support\ServiceProvider;
 
 class ProductServiceProvider extends ServiceProvider
 {
-    protected $namespace = 'App\Modules\Product\Controllers';
+    protected $namespace = 'App\\Modules\\Product\\Controllers';
 
     protected $apiPrefix = '/api/v1';
 
