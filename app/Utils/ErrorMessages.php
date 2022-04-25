@@ -33,4 +33,7 @@ class ErrorMessages
 
     public const WENT_WRONG = 1007;
     public const WENT_WRONG_MSG = 'Resursni olishda muammo!';
+
+    public const CAN_NOT_GET_RESOURCE = 1008;
+    public const CAN_NOT_GET_RESOURCE_MSG = 'Resursni olib bo\'lmadi';
 }

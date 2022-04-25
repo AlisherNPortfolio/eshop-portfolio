@@ -2,6 +2,12 @@
 
 namespace App\Modules\Product\Providers;
 
+use App\Modules\Product\Contracts\Repository\IProductDetailsRepository;
+use App\Modules\Product\Contracts\Repository\IProductListRepository;
+use App\Modules\Product\Contracts\Repository\IProductRepository;
+use App\Modules\Product\Repository\ProductDetailsRepository;
+use App\Modules\Product\Repository\ProductListRepository;
+use App\Modules\Product\Repository\ProductRepository;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +29,7 @@ class ProductServiceProvider extends ServiceProvider
             $this->registerMigrations();
         }
 
-        // $this->app->bind(AnyInterface::class, AnyPatternRepository::class);
+        $this->bindModuleClasses();
     }
 
     protected function registerConfig()
@@ -44,5 +50,12 @@ class ProductServiceProvider extends ServiceProvider
         Route::prefix($this->apiPrefix)
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../routes/route.php');
+    }
+
+    protected function bindModuleClasses()
+    {
+        $this->app->bind(IProductRepository::class, ProductRepository::class);
+        $this->app->bind(IProductListRepository::class, ProductListRepository::class);
+        $this->app->bind(IProductDetailsRepository::class, ProductDetailsRepository::class);
     }
 }

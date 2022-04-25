@@ -4,7 +4,7 @@ namespace App\Modules\Product\DbViews;
 
 use App\Models\Shop\ProductImage;
 
-class ProductView extends ProductList
+class ProductDetails extends ProductList
 {
     protected $table = 'product_details';
 
