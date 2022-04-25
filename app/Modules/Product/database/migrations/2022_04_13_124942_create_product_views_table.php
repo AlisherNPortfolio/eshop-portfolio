@@ -13,7 +13,7 @@ return new class extends Migration
     public function up()
     {
         DB::statement("
-            CREATE MATERIALIZED VIEW product_views
+            CREATE VIEW product_details
             AS
                 select
                 p.*,
@@ -28,8 +28,6 @@ return new class extends Migration
                 inner join public.categories c on p.category_id = c.id
                 group by p.id, s.id, b.id, c.id;
         ");
-
-        DB::statement("REFRESH MATERIALIZED VIEW product_views");
     }
 
     /**
@@ -39,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        DB::statement('DROP VIEW IF EXISTS product_views');
+        DB::statement('DROP VIEW IF EXISTS product_details');
     }
 };
