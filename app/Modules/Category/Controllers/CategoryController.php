@@ -4,7 +4,9 @@ namespace App\Modules\Category\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Category\Contracts\Repository\ICategoryRepository;
-use Illuminate\Support\Facades\DB;
+use App\Modules\Category\Resources\SubMenuResource;
+use Exception;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,10 +17,41 @@ class CategoryController extends Controller
         $this->repository = $repository;
     }
 
-    public function getTree()
+    public function getTreeHierarchy(Request $request, $shop_name)
     {
-        return success_response(
-            DB::select("select * from menu_tree(2, 1)")
-        );
+        try {
+            $menus = $this->repository->getSubTree($shop_name);
+
+            if (count($menus) === 0) {
+                return error_response(
+                    $this->cantGetResourceError()
+                );
+            }
+
+            return success_response(
+                menu_tree(SubMenuResource::collection($menus))
+            );
+        } catch (Exception $e) {
+            return $this->cantGetResourceError($e);
+        }
+    }
+
+    public function getItems(Request $request, $shop_name)
+    {
+        try {
+            $menus = $this->repository->getSubTree($shop_name);
+
+            if (count($menus) === 0) {
+                return error_response(
+                    $this->cantGetResourceError()
+                );
+            }
+
+            return success_response(
+                SubMenuResource::collection($menus)
+            );
+        } catch (Exception $e) {
+            return $this->cantGetResourceError($e);
+        }
     }
 }

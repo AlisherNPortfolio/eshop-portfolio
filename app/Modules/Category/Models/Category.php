@@ -15,6 +15,10 @@ class Category extends Model
 
     public $timestamps = false;
 
+    protected $casts = [
+        'status' => 'boolean'
+    ];
+
     public function parent()
     {
         return $this->belongsTo(self::class);
@@ -28,5 +32,22 @@ class Category extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', true);
+    }
+
+    public function scopeShop($query, $shopName)
+    {
+        return $query->whereHas('shop', function ($q) use ($shopName) {
+            $q->where('unique_name', '=', $shopName);
+        });
+    }
+
+    public function scopeOnlyChildren($query)
+    {
+        return $query->whereNotNull('parent_id');
     }
 }

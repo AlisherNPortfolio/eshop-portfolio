@@ -5,7 +5,7 @@ namespace App\Modules\Category\Repository;
 use App\Modules\Category\Contracts\Repository\ICategoryRepository;
 use App\Modules\Category\Models\Category;
 use App\Repository\BaseRepository;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class CategoryRepository extends BaseRepository implements ICategoryRepository
 {
@@ -13,8 +13,13 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository
     {
         parent::__construct($model);
     }
-    public function getSubTree()
+
+    public function getSubTree(string $shopName): Collection
     {
-        return DB::select("select * from menu_tree(2, 2)");
+        return $this->model
+            ->active()
+            ->shop($shopName)
+            ->orderBy('lft')
+            ->get();
     }
 }
