@@ -4,6 +4,7 @@ namespace App\Modules\Brand\database\seeders;
 
 use App\Modules\Brand\Models\Brand;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class BrandsSeeder extends Seeder
 {
@@ -25,6 +26,7 @@ class BrandsSeeder extends Seeder
         ];
 
         foreach ($brands as $brand) {
+            $brand['unique_name'] = Str::slug($brand['name']);
             Brand::create($brand);
         }
     }

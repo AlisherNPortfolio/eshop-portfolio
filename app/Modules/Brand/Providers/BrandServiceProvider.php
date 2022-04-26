@@ -2,6 +2,8 @@
 
 namespace App\Modules\Brand\Providers;
 
+use App\Modules\Brand\Contracts\Repository\IBrandRepository;
+use App\Modules\Brand\Repository\BrandRepository;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +25,7 @@ class BrandServiceProvider extends ServiceProvider
             $this->registerMigrations();
         }
 
-        // $this->app->bind(AnyInterface::class, AnyPatternRepository::class);
+        $this->bindModuleClasses();
     }
 
     protected function registerConfig()
@@ -44,5 +46,10 @@ class BrandServiceProvider extends ServiceProvider
         Route::prefix($this->apiPrefix)
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../routes/route.php');
+    }
+
+    public function bindModuleClasses()
+    {
+        $this->app->bind(IBrandRepository::class, BrandRepository::class);
     }
 }
