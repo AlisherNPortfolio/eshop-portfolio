@@ -2,6 +2,8 @@
 
 namespace App\Modules\Category\Providers;
 
+use App\Modules\Category\Contracts\Repository\ICategoryRepository;
+use App\Modules\Category\Repository\CategoryRepository;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +25,7 @@ class CategoryServiceProvider extends ServiceProvider
             $this->registerMigrations();
         }
 
-        // $this->app->bind(AnyInterface::class, AnyPatternRepository::class);
+        $this->bindModuleClasses();
     }
 
     protected function registerConfig()
@@ -44,5 +46,10 @@ class CategoryServiceProvider extends ServiceProvider
         Route::prefix($this->apiPrefix)
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../routes/route.php');
+    }
+
+    public function bindModuleClasses()
+    {
+        $this->app->bind(ICategoryRepository::class, CategoryRepository::class);
     }
 }

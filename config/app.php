@@ -177,9 +177,9 @@ return [
         \App\Providers\EventServiceProvider::class,
         \App\Providers\RouteServiceProvider::class,
         \App\Modules\Auth\Providers\AuthServiceProvider::class,
+        \App\Modules\Shop\Providers\ShopServiceProvider::class,
         \App\Modules\Category\Providers\CategoryServiceProvider::class,
         \App\Modules\Brand\Providers\BrandServiceProvider::class,
-        \App\Modules\Shop\Providers\ShopServiceProvider::class,
         \App\Modules\Product\Providers\ProductServiceProvider::class,
 
     ],
