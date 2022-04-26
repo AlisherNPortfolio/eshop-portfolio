@@ -71,3 +71,18 @@ if (!function_exists('get_shop_name')) {
         return "";
     }
 }
+
+if (!function_exists('menu_tree')) {
+    function menu_tree($arrayData, $left = 0, $right = null)
+    {
+        $tree = [];
+        foreach ($arrayData as $cat => $range) {
+            if ($range->lft == $left + 1 && (is_null($right) || $range->rgt < $right)) {
+                $tree[$range->id]['category_data'] = $range;
+                $tree[$range->id]['subcategories'] = menu_tree($arrayData, $range->lft, $range->rgt);
+                $left = $range->rgt;
+            }
+        }
+        return $tree;
+    }
+}
