@@ -2,6 +2,8 @@
 
 namespace App\Modules\Pattern\Providers;
 
+use App\Modules\_Pattern\Contracts\Repository\IPatternRepository;
+use App\Modules\Pattern\Repository\PatternRepository;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +25,7 @@ class PatternServiceProvider extends ServiceProvider
             $this->registerMigrations();
         }
 
-        // $this->app->bind(AnyInterface::class, AnyPatternRepository::class);
+        $this->bindModuleClasses();
     }
 
     protected function registerConfig()
@@ -44,5 +46,10 @@ class PatternServiceProvider extends ServiceProvider
         Route::prefix($this->apiPrefix)
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../routes/route.php');
+    }
+
+    private function bindModuleClasses()
+    {
+        $this->app->bind(IPatternRepository::class, PatternRepository::class);
     }
 }
