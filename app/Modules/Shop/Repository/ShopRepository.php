@@ -2,7 +2,7 @@
 
 namespace App\Modules\Shop\Repository;
 
-use App\Repositories\Base\BaseRepository;
+use App\Repository\BaseRepository;
 
 class ShopRepository extends BaseRepository
 {

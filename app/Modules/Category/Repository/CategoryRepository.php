@@ -2,7 +2,7 @@
 
 namespace App\Modules\Category\Repository;
 
-use App\Repositories\Base\BaseRepository;
+use App\Repository\BaseRepository;
 
 class CategoryRepository extends BaseRepository
 {

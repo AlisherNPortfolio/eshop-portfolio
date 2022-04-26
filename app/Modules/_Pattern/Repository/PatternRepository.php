@@ -2,7 +2,7 @@
 
 namespace App\Modules\Pattern\Repository;
 
-use App\Repositories\Base\BaseRepository;
+use App\Repository\BaseRepository;
 
 class PatternRepository extends BaseRepository
 {
