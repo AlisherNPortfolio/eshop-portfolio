@@ -16,22 +16,24 @@ class CreateFunctionForCategoryTree extends Migration
         $this->down();
         DB::statement('
             CREATE OR REPLACE FUNCTION menu_tree(pId integer, shopId integer)
-            RETURNS table (id bigint, name text, lft int4, rgt int4, depth int2, parent_id int8, status int2, user_id int8, shop_id int8)
+            RETURNS table (id bigint, name text, lft int4, rgt int4, depth int2, parent_id int8, status int2, user_id int8, shop_id int8, unique_name varchar)
             AS $$
             BEGIN
-                RETURN QUERY WITH RECURSIVE cat_tree (id, name, lft, rgt, depth, parent_id, status, user_id, shop_id) AS (
+                RETURN QUERY WITH RECURSIVE cat_tree (id, name, lft, rgt, depth, parent_id, status, user_id, shop_id, unique_name) AS (
                     SELECT
-                        categories.id,
-                        categories."name",
-                        categories.lft,
-                        categories.rgt,
-                        categories."depth",
-                        categories.parent_id,
-                        categories.status,
-                        categories.user_id,
-                        categories.shop_id
-                    FROM categories
-                    WHERE categories.parent_id = pId AND categories.shop_id = shopId
+                        c.id,
+                        c."name",
+                        c.lft,
+                        c.rgt,
+                        c."depth",
+                        c.parent_id,
+                        c.status,
+                        c.user_id,
+                        c.shop_id,
+                        sh.unique_name
+                    FROM categories c
+                    JOIN shops sh ON sh.id = c.shop_id
+                    WHERE c.parent_id = pId AND c.shop_id = shopId
 
                     UNION ALL
 
@@ -44,7 +46,8 @@ class CreateFunctionForCategoryTree extends Migration
                         child.parent_id,
                         child.status,
                         child.user_id,
-                        child.shop_id
+                        child.shop_id,
+                        ct.unique_name
                     FROM categories AS child, cat_tree AS ct
                     WHERE child.parent_id = ct.id
                 )
