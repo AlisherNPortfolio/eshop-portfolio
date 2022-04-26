@@ -73,16 +73,31 @@ if (!function_exists('get_shop_name')) {
 }
 
 if (!function_exists('menu_tree')) {
-    function menu_tree($arrayData, $left = 0, $right = null)
+    function menu_tree($arrayData)
     {
-        $tree = [];
-        foreach ($arrayData as $cat => $range) {
-            if ($range->lft == $left + 1 && (is_null($right) || $range->rgt < $right)) {
-                $tree[$range->id]['category_data'] = $range;
-                $tree[$range->id]['subcategories'] = menu_tree($arrayData, $range->lft, $range->rgt);
-                $left = $range->rgt;
+        $stack = array();
+        $arraySet = array();
+
+        foreach ($arrayData as $intKey => $arrValues) {
+            $left = is_array($arrValues) ? $arrValues['lft'] : $arrValues->resource->lft;
+            $right = is_array($arrValues) ? $arrValues['rgt'] : $arrValues->resource->rgt;
+
+            $stackSize = count($stack);
+
+            while ($stackSize > 0 && $stack[$stackSize - 1]['right'] < $left) {
+                array_pop($stack);
+                $stackSize--;
             }
+
+            $link = &$arraySet;
+            for ($i = 0; $i < $stackSize; $i++) {
+                $link = &$link[$stack[$i]['id']]["children"];
+            }
+
+            $tmp = array_push($link,  array('item' => $arrValues, 'children' => array()));
+            array_push($stack, array('id' => $tmp - 1, 'right' => $right));
         }
-        return $tree;
+
+        return $arraySet;
     }
 }
