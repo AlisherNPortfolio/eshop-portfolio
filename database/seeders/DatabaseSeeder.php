@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Modules\Auth\database\seeders\UserSeeder;
 use App\Modules\Brand\database\seeders\BrandsSeeder;
+use App\Modules\Cart\database\seeders\CartSeeder;
 use App\Modules\Category\database\seeders\CategorySeeder;
 use App\Modules\Product\database\seeders\OptionItemSeeder;
 use App\Modules\Product\database\seeders\OptionSeeder;
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OptionSeeder::class);
         $this->call(OptionItemSeeder::class);
         $this->call(ProductOptionItemSeeder::class);
+        $this->call(CartSeeder::class);
 
         Artisan::call('passport:install');
     }
