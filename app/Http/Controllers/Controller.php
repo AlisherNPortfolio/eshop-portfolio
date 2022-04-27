@@ -13,7 +13,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected function cantGetResourceError(Exception $e = null)
+    protected function cantGetResourceError(Exception $exception = null)
     {
         $details = $e?->getMessage();
 
