@@ -10,7 +10,6 @@ use App\Modules\Cart\Resources\CartAddedItemResource;
 use App\Modules\Cart\Resources\CartResource;
 use App\Utils\ErrorMessages;
 use Exception;
-use PDOException;
 
 class CartController extends Controller
 {
@@ -49,6 +48,14 @@ class CartController extends Controller
     {
         try {
             $data = $request->validated();
+
+            $productExists = $this->repository->checkHasProduct($data['product_id']);
+
+            if ($productExists) {
+                return error_response(
+                    'Siz bu mahsulotni savatingizga qo\'shgansiz'
+                );
+            }
 
             return success_response(
                 new CartAddedItemResource(

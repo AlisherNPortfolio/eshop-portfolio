@@ -7,4 +7,6 @@ use App\Modules\Cart\Models\Cart;
 interface ICartRepository
 {
     public function add(array $data): Cart;
+
+    public function checkHasProduct(int $product_id): Cart;
 }

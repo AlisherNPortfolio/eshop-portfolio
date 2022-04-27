@@ -31,6 +31,14 @@ class CartRepository extends BaseRepository implements ICartRepository
         return $this->model->create($params);
     }
 
+    public function checkHasProduct(int $product_id): Cart
+    {
+        return $this->model
+        ->where('product_option_item_id', '=', $product_id)
+        ->where('user_id', '=', Auth::user()->id)
+        ->first();
+    }
+
     private function getProductOption($optionId)
     {
         $product = ProductOptionItem::find($optionId);
