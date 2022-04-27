@@ -182,6 +182,7 @@ return [
         \App\Modules\Brand\Providers\BrandServiceProvider::class,
         \App\Modules\Product\Providers\ProductServiceProvider::class,
         \App\Modules\Cart\Providers\CartServiceProvider::class,
+        \App\Modules\Setting\Providers\SettingServiceProvider::class,
 
     ],
 
