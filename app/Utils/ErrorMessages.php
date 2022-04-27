@@ -36,4 +36,7 @@ class ErrorMessages
 
     public const CAN_NOT_GET_RESOURCE = 1008;
     public const CAN_NOT_GET_RESOURCE_MSG = 'Resursni olib bo\'lmadi';
+
+    public const RESOURCE_ALREADY_EXISTS = 1009;
+    public const RESOURCE_ALREADY_EXISTS_MSG = 'Ma\'lumot ba\'zada mavjud!';
 }
