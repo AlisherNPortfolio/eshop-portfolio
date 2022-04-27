@@ -2,7 +2,7 @@
 
 namespace App\Modules\Setting\database\seeders;
 
-use App\Models\Region;
+use App\Modules\Setting\Models\Region;
 use Illuminate\Database\Seeder;
 
 class RegionSeeder extends Seeder

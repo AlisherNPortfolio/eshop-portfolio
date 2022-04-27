@@ -2,7 +2,7 @@
 
 namespace App\Modules\Setting\database\seeders;
 
-use App\Models\District;
+use App\Modules\Setting\Models\District;
 use Illuminate\Database\Seeder;
 
 class DistrictSeeder extends Seeder
