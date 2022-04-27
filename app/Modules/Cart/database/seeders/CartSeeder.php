@@ -18,17 +18,20 @@ class CartSeeder extends Seeder
             [
                 'product_option_item_id' => 1,
                 'total_sum' => 10000,
-                'qty' => 2
+                'qty' => 2,
+                'user_id' => 3
             ],
             [
                 'product_option_item_id' => 10,
                 'total_sum' => 18000,
-                'qty' => 3
+                'qty' => 3,
+                'user_id' => 3
             ],
             [
                 'product_option_item_id' => 36,
                 'total_sum' => 30000,
-                'qty' => 5
+                'qty' => 5,
+                'user_id' => 3
             ]
         ];
 
