@@ -15,7 +15,16 @@ class CreateOrderItemsTable extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('order_id')
+                ->constrained('orders')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreignId('product_option_item_id')
+                ->constrained('product_option_items')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->float('price');
+            $table->float('qty');
         });
     }
 
@@ -26,6 +35,10 @@ class CreateOrderItemsTable extends Migration
      */
     public function down()
     {
+        Schema::create('order_items', function (Blueprint $table) {
+            $table->dropForeign(['order_id', 'product_option_item_id']);
+        });
+
         Schema::dropIfExists('order_items');
     }
 }

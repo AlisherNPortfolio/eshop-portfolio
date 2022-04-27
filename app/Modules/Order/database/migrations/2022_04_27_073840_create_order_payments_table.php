@@ -15,6 +15,15 @@ class CreateOrderPaymentsTable extends Migration
     {
         Schema::create('order_payments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')
+                ->constrained('orders')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->float('monthly_price');
+            $table->integer('month');
+            $table->tinyInteger('status')
+                ->default(0)
+                ->comment('0-NOT_PAYED, 1-PAYED');
             $table->timestamps();
         });
     }
@@ -26,6 +35,10 @@ class CreateOrderPaymentsTable extends Migration
      */
     public function down()
     {
+        Schema::create('order_payments', function (Blueprint $table) {
+            $table->dropForeign('order_id');
+        });
+
         Schema::dropIfExists('order_payments');
     }
 }
