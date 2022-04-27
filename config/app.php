@@ -181,6 +181,7 @@ return [
         \App\Modules\Category\Providers\CategoryServiceProvider::class,
         \App\Modules\Brand\Providers\BrandServiceProvider::class,
         \App\Modules\Product\Providers\ProductServiceProvider::class,
+        \App\Modules\Cart\Providers\CartServiceProvider::class,
 
     ],
 

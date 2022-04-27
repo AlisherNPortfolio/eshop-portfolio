@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Modules\Pattern\Providers;
+namespace App\Modules\Cart\Providers;
 
 use App\Modules\Cart\Contracts\Repository\ICartRepository;
+use App\Modules\Cart\Contracts\Repository\ICartViewRepository;
 use App\Modules\Cart\Repository\CartRepository;
+use App\Modules\Cart\Repository\CartViewRepository;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -51,5 +53,6 @@ class CartServiceProvider extends ServiceProvider
     private function bindModuleClasses()
     {
         $this->app->bind(ICartRepository::class, CartRepository::class);
+        $this->app->bind(ICartViewRepository::class, CartViewRepository::class);
     }
 }

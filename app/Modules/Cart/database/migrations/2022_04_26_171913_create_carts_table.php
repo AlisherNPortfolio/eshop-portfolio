@@ -15,6 +15,12 @@ class CreateCartsTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_option_item_id')
+                ->constrained('product_option_items')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->float('total_sum');
+            $table->float('qty');
             $table->timestamps();
         });
     }
@@ -26,6 +32,10 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
+        Schema::table('carts', function (Blueprint $table) {
+            $table->dropForeign(['product_option_item_id']);
+        });
+
         Schema::dropIfExists('carts');
     }
 }
