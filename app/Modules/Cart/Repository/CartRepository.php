@@ -39,6 +39,28 @@ class CartRepository extends BaseRepository implements ICartRepository
         ->first();
     }
 
+    public function incrementCartItemCount(int $cart_id): bool
+    {
+        $cart = $this->getCart($cart_id);
+
+        $cart->qty++;
+
+        return $cart->save();
+    }
+
+    public function decrementCartItemCount(int $cart_id): bool|int
+    {
+        $cart = $this->getCart($cart_id);
+
+        if ($cart->qty == 1) {
+            return -1;
+        }
+
+        $cart->qty--;
+
+        return $cart->save();
+    }
+
     private function getProductOption($optionId)
     {
         $product = ProductOptionItem::find($optionId);
@@ -48,5 +70,16 @@ class CartRepository extends BaseRepository implements ICartRepository
         }
 
         return $product;
+    }
+
+    private function getCart($cart_id)
+    {
+        $cart = $this->model->find($cart_id);
+
+        if (! $cart) {
+            abort(ErrorMessages::NOT_FOUND, ErrorMessages::NOT_FOUND_MSG);
+        }
+
+        return $cart;
     }
 }

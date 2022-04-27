@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Modules\Cart\Contracts\Repository\ICartRepository;
 use App\Modules\Cart\Contracts\Repository\ICartViewRepository;
 use App\Modules\Cart\Requests\CartAddRequest;
+use App\Modules\Cart\Requests\ChangeProductCountRequest;
 use App\Modules\Cart\Resources\CartAddedItemResource;
 use App\Modules\Cart\Resources\CartResource;
 use App\Utils\ErrorMessages;
@@ -63,11 +64,42 @@ class CartController extends Controller
                 )
             );
         } catch (Exception $e) {
-            return error_response(
-                ErrorMessages::CAN_NOT_CREATE_MSG,
-                ErrorMessages::CAN_NOT_CREATE,
-                $e->getMessage()
+            return $this->cantCreateResourceError($e);
+        }
+    }
+
+    public function incrementProductCount(ChangeProductCountRequest $request)
+    {
+        try {
+            $data = $request->validated();
+
+            return success_response(
+                $this->repository->incrementCartItemCount($data['cart_id'])
             );
+
+        } catch (Exception $e) {
+            return $this->cantUpdateResourceError($e);
+        }
+    }
+
+    public function decrementProductCount(ChangeProductCountRequest $request)
+    {
+        try {
+            $data = $request->validated();
+
+            $result = $this->repository
+                            ->decrementCartItemCount($data['cart_id']);
+
+            if ($result === -1) {
+                return error_response(
+                    'Mahsulotni savatchadan olib tashalang'
+                );
+            }
+
+            return success_response($result);
+
+        } catch (Exception $e) {
+            return $this->cantUpdateResourceError($e);
         }
     }
 }
