@@ -15,11 +15,33 @@ class Controller extends BaseController
 
     protected function cantGetResourceError(Exception $exception = null)
     {
-        $details = $e?->getMessage();
+        $details = $exception?->getMessage();
 
         return error_response(
             ErrorMessages::CAN_NOT_GET_RESOURCE_MSG,
             ErrorMessages::CAN_NOT_GET_RESOURCE,
+            $details
+        );
+    }
+
+    protected function cantUpdateResourceError(Exception $exception = null)
+    {
+        $details = $exception?->getMessage();
+
+        return error_response(
+            ErrorMessages::CAN_NOT_UPDATE_MSG,
+            ErrorMessages::CAN_NOT_UPDATE,
+            $details
+        );
+    }
+
+    protected function cantCreateResourceError(Exception $exception = null)
+    {
+        $details = $exception?->getMessage();
+
+        return error_response(
+            ErrorMessages::CAN_NOT_CREATE_MSG,
+            ErrorMessages::CAN_NOT_CREATE,
             $details
         );
     }
