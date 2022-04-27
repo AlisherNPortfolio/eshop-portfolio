@@ -183,6 +183,8 @@ return [
         \App\Modules\Product\Providers\ProductServiceProvider::class,
         \App\Modules\Cart\Providers\CartServiceProvider::class,
         \App\Modules\Setting\Providers\SettingServiceProvider::class,
+        \App\Modules\Payment\Providers\PaymentServiceProvider::class,
+        \App\Modules\Order\Providers\OrderServiceProvider::class,
 
     ],
 
