@@ -11,6 +11,8 @@ use App\Modules\Product\database\seeders\OptionSeeder;
 use App\Modules\Product\database\seeders\ProductImageSeeder;
 use App\Modules\Product\database\seeders\ProductOptionItemSeeder;
 use App\Modules\Product\database\seeders\ProductSeeder;
+use App\Modules\Setting\database\seeders\DistrictSeeder;
+use App\Modules\Setting\database\seeders\RegionSeeder;
 use App\Modules\Shop\database\seeders\ShopSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
