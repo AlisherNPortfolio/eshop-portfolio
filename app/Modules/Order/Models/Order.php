@@ -15,7 +15,7 @@ class Order extends Model
 
     protected $fillable = [
         'user_id', 'seller_id', 'delivery_region_id', 'delivery_district_id',
-        'customer_comment', 'seller_comment', 'total_price', 'status',
+        'customer_comment', 'seller_comment', 'total_price', 'status', 'delivery_address',
         'payment_status', 'has_installment', 'initial_payment', 'installment_months'
     ];
 

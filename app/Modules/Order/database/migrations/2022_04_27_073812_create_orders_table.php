@@ -31,6 +31,7 @@ class CreateOrdersTable extends Migration
                 ->constrained('districts')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->text('delivery_address');
             $table->text('customer_comment')->nullable();
             $table->text('seller_comment')->nullable();
             $table->float('total_price');
