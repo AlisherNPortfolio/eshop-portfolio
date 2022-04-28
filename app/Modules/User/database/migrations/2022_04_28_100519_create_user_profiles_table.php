@@ -35,6 +35,8 @@ class CreateUserProfilesTable extends Migration
                 ->onDelete('cascade');
             $table->text('address')->nullable();
             $table->text('bio')->nullable();
+            $table->tinyInteger('status')->default(1)
+                ->comment('0 - NOT_ACTIVE, 1-ACTIVE');
             $table->timestamps();
         });
     }
