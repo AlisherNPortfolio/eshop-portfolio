@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(RegionSeeder::class);
+        $this->call(DistrictSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(UserProfileSeeder::class);
         $this->call(ShopSeeder::class);
@@ -39,8 +41,6 @@ class DatabaseSeeder extends Seeder
         $this->call(OptionItemSeeder::class);
         $this->call(ProductOptionItemSeeder::class);
         $this->call(CartSeeder::class);
-        $this->call(RegionSeeder::class);
-        $this->call(DistrictSeeder::class);
         $this->call(PaymentTypeSeeder::class);
 
         Artisan::call('passport:install');
