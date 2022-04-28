@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Auth\database\seeders;
+namespace App\Modules\User\database\seeders;
 
 use App\Modules\User\Models\User;
 use Illuminate\Database\Seeder;
@@ -18,17 +18,20 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'password' => bcrypt('admin123')
+                'password' => bcrypt('admin123'),
+                'type' => 1
             ],
             [
                 'name' => 'User',
                 'email' => 'user@gmail.com',
-                'password' => bcrypt('user123')
+                'password' => bcrypt('user123'),
+                'type' => 1
             ],
             [
                 'name' => 'User 2',
                 'email' => 'user2@gmail.com',
-                'password' => bcrypt('user123')
+                'password' => bcrypt('user123'),
+                'type' => 2
             ]
         ];
 

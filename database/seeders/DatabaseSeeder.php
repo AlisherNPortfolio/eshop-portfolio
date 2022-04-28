@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Modules\Auth\database\seeders\UserSeeder;
+use App\Modules\User\database\seeders\UserSeeder;
 use App\Modules\Brand\database\seeders\BrandsSeeder;
 use App\Modules\Cart\database\seeders\CartSeeder;
 use App\Modules\Category\database\seeders\CategorySeeder;
