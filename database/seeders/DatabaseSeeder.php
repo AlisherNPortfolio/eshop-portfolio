@@ -15,6 +15,7 @@ use App\Modules\Setting\database\seeders\DistrictSeeder;
 use App\Modules\Setting\database\seeders\PaymentTypeSeeder;
 use App\Modules\Setting\database\seeders\RegionSeeder;
 use App\Modules\Shop\database\seeders\ShopSeeder;
+use App\Modules\User\database\seeders\UserProfileSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
 
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserSeeder::class);
+        $this->call(UserProfileSeeder::class);
         $this->call(ShopSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(BrandsSeeder::class);

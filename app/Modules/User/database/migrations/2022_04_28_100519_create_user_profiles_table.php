@@ -22,7 +22,9 @@ class CreateUserProfilesTable extends Migration
             $table->string('full_name')->nullable();
             $table->string('username', 30);
             $table->string('profile_image')->nullable();
-            $table->string('phone', 13)->comment('+998959998855');
+            $table->string('phone', 13)
+                ->unique()
+                ->comment('+998959998855');
             $table->foreignId('region_id')
                 ->nullable()
                 ->constrained('regions')
