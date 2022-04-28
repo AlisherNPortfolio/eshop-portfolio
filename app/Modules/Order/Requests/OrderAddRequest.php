@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Modules\Order\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class OrderAddRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'delivery_region_id' => 'required|integer|min:1',
+            'delivery_district_id' => 'required|integer|min:1',
+            'customer_comment' => 'nullable|string|max:500',
+            'has_installment' => 'required|boolean',
+            'initial_payment' => 'required_if:has_installment,true|integer',
+            'products' => 'required|array:product_id,quantity',
+            'products.*.order_id' => 'required|integer|min:1',
+            'products.*.quantity' => 'required|integer',
+            'payments' => 'required_if:has_installment,true|array:payment_period',
+            'payments.*.payment_period' => 'required|integer|min:1'
+        ];
+    }
+}
