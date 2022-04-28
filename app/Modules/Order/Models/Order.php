@@ -2,10 +2,10 @@
 
 namespace App\Modules\Order\Models;
 
-use App\Models\User;
 use App\Modules\Product\Models\ProductOptionItem;
 use App\Modules\Setting\Models\District;
 use App\Modules\Setting\Models\Region;
+use App\Modules\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

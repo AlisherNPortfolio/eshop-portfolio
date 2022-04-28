@@ -176,6 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         \App\Providers\EventServiceProvider::class,
         \App\Providers\RouteServiceProvider::class,
+        \App\Modules\User\Providers\UserServiceProvider::class,
         \App\Modules\Auth\Providers\AuthServiceProvider::class,
         \App\Modules\Shop\Providers\ShopServiceProvider::class,
         \App\Modules\Category\Providers\CategoryServiceProvider::class,

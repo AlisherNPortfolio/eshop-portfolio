@@ -2,8 +2,8 @@
 
 namespace App\Modules\Category\Models;
 
-use App\Models\User;
 use App\Modules\Shop\Models\Shop;
+use App\Modules\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

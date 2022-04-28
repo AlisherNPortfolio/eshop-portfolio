@@ -2,9 +2,9 @@
 
 namespace App\Modules\Auth\Repository;
 
-use App\Models\User;
 use App\Modules\Auth\Contracts\Repository\IAuthRepository;
 use App\Modules\Auth\Resources\AuthResource;
+use App\Modules\User\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
