@@ -9,8 +9,8 @@ use App\Modules\Cart\Requests\CartAddRequest;
 use App\Modules\Cart\Requests\ChangeProductCountRequest;
 use App\Modules\Cart\Resources\CartAddedItemResource;
 use App\Modules\Cart\Resources\CartResource;
-use App\Utils\ErrorMessages;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -76,7 +76,6 @@ class CartController extends Controller
             return success_response(
                 $this->repository->incrementCartItemCount($data['cart_id'])
             );
-
         } catch (Exception $e) {
             return $this->cantUpdateResourceError($e);
         }
@@ -88,7 +87,7 @@ class CartController extends Controller
             $data = $request->validated();
 
             $result = $this->repository
-                            ->decrementCartItemCount($data['cart_id']);
+                ->decrementCartItemCount($data['cart_id']);
 
             if ($result === -1) {
                 return error_response(
@@ -97,9 +96,30 @@ class CartController extends Controller
             }
 
             return success_response($result);
-
         } catch (Exception $e) {
             return $this->cantUpdateResourceError($e);
+        }
+    }
+
+    public function getUserProducts()
+    {
+        $userId = Auth::user()->id;
+
+        return $this->getProducts($userId);
+    }
+
+    public function getCartDetails()
+    {
+        try {
+            $details = $this->viewRepository->getDetails();
+
+            if (!$details) {
+                return $this->cantGetResourceError();
+            }
+
+            return success_response($details);
+        } catch (Exception $e) {
+            return $this->cantGetResourceError($e);
         }
     }
 }
