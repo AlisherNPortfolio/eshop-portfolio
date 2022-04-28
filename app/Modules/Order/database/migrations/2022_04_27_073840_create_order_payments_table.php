@@ -19,6 +19,10 @@ class CreateOrderPaymentsTable extends Migration
                 ->constrained('orders')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreignId('payment_period_id')
+                ->constrained('payment_periods')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->float('monthly_price');
             $table->integer('month');
             $table->tinyInteger('status')
