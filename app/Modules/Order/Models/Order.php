@@ -8,6 +8,7 @@ use App\Modules\Setting\Models\Region;
 use App\Modules\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Order extends Model
 {
@@ -43,4 +44,28 @@ class Order extends Model
     {
         return $this->hasManyThrough(ProductOptionItem::class, OrderItem::class);
     }
+
+    public function createItem(array $data, Collection $gotProducts): array
+    {
+        $items = [];
+        $products = $gotProducts->toArray();
+
+        foreach ($data as $product) {
+            // dd($gotProducts->toArray());
+            array_push(
+                $items,
+                OrderItem::create([
+                    'order_id' => $this->id,
+                    'qty' => $product['quantity'],
+                    'product_option_item_id' => $product['product_id'],
+                    'price' => $products[$product['product_id']]
+                ])
+            );
+        }
+
+        return $items;
+    }
+
+    public function createPayments()
+    {}
 }

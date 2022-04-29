@@ -6,5 +6,5 @@ use App\Modules\Order\Models\Order;
 
 interface IOrderRepository
 {
-    public function addItem(array $params): Order;
+    public function addItem(array $params): Order|bool;
 }

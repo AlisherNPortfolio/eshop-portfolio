@@ -31,10 +31,10 @@ class OrderAddRequest extends FormRequest
             'has_installment' => 'required|boolean',
             'initial_payment' => 'required_if:has_installment,true|integer',
             'payment_type' => 'required|integer',
-            'products' => 'required|array:product_id,quantity',
+            'products' => 'required|array',
             'products.*.product_id' => 'required|integer|min:1',
             'products.*.quantity' => 'required|integer',
-            'payments' => 'required_if:has_installment,true|array:payment_period',
+            'payments' => 'required_if:has_installment,true|array',
             'payments.*.payment_period' => 'required|integer|min:1',
             'payments.*.initial_payment' => 'required|integer'
         ];

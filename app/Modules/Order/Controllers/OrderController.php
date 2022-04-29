@@ -21,8 +21,9 @@ class OrderController extends Controller
         try {
             $data = $request->validated();
 
+            $createdOrder = $this->repository->addItem($data);
             return success_response(
-                $this->repository->addItem($data)
+                $createdOrder->id
             );
         } catch (Exception $e) {
             return $this->cantCreateResourceError($e);
