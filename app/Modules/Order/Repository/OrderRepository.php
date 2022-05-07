@@ -30,7 +30,7 @@ class OrderRepository extends BaseRepository implements IOrderRepository
         try {
             $customerProducts = $this->getCustromerProducts($params['products']);
             $order = $this->createOrder($params, $customerProducts);
-            $order->createItem($params['products'], $customerProducts); //dd($params);
+            $order->createItem($params['products'], $customerProducts);
 
             if ($params['has_installment']) {
                 $order->createPayments();
