@@ -21,20 +21,21 @@ class OrderRepository extends BaseRepository implements IOrderRepository
 
     public function addItem(array $params): Order|bool
     {
-        // Order create
-        // OrderItem create
-        // OrderPayment (agar bo'lsa)
+        /** 1. Order create
+         *  2. OrderItem create
+         *  3. OrderPayment (agar bo'lsa)
+         */
 
         DB::beginTransaction();
         try {
             $customerProducts = $this->getCustromerProducts($params['products']);
             $order = $this->createOrder($params, $customerProducts);
-            $order->createItem($params['products'], $customerProducts);//dd($params);
+            $order->createItem($params['products'], $customerProducts); //dd($params);
 
             if ($params['has_installment']) {
                 $order->createPayments();
             }
-// dd($order);
+
             DB::commit();
             return $order;
         } catch (Exception $e) {
