@@ -21,3 +21,5 @@ Made with Laravel 9 and Vue 3
         App\Modules\Module_Name\Providers\Provider_File_Name::class
 ]
 ```
+==================================================
+> Vue 3 frontend site was not started yet! I think I will develop it after finishing the backend side.
