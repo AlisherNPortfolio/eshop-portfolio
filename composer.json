@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "alishern/eshop-posrtfolio",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Modular ecommerce test project for myself",
+    "keywords": ["laravel", "ecommerce", "modular", "test-project"],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
