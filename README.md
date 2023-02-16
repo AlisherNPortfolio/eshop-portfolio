@@ -22,4 +22,4 @@ Made with Laravel 9 and Vue 3
 ]
 ```
 ==================================================
-> Vue 3 frontend site was not started yet! I think I will develop it after finishing the backend side.
+> Vue 3 frontend side was not started yet! I think I will develop it after finishing the backend side.
